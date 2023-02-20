@@ -1,0 +1,34 @@
+{
+  "development": {
+    "PORT": 5001,
+      "APP_URL": "http://localhost:5001",
+      "JWT_KEY": "<l0k@s!3nt3rpr!s3>",
+      "JWT_TOKENLIFE": "3h",
+      "JWT_refreshTokenLife": 86400,
+      "DB_HOST": "localhost",
+      "DB_PORT": "5432",
+      "DB_NAME": "nodeflux_auth",
+      "DB_USER": "didikirawan",
+      "DB_PWD": "kode2019",
+      "EMAIL_USER": "AKIA6NVZGT5R7LNMAHT3",
+      "EMAIL_PASSWORD": "BEvkbk06v6/SlPHwUWuFTrPssPcxdMv5UFMISd/vME2x",
+      "EMAIL_SERVICE": "email-smtp.ap-southeast-1.amazonaws.com",
+      "EMAIL_PORT": "587",
+      "EMAIL_SENDER": "noreplay@e.bvarta.com",
+      "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

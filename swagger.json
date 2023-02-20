@@ -1,0 +1,26 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "auth_nodeflux_visual_ai",
+        "description": "auth_nodeflux_visual_ai"
+    },
+    "host": "localhost:5001",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "API for users in the system",
+            "paths":"/users/login"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ]
+}

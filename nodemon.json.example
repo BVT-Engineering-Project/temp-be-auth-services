@@ -1,0 +1,21 @@
+{
+  "env": {
+    "PORT": 5001,
+    "APP_URL": "https://api-nodeflux.lokasi.dev",
+    "JWT_KEY": "<l0k@s!3nt3rpr!s3>",
+    "API_URL_AUTH": "https://api-nodeflux.lokasi.dev/auth",
+    "API_URL_EMAIL": "https://nodeflux.lokasi.dev",
+    "JWT_TOKENLIFE": "365d",
+    "JWT_refreshTokenLife": 86400,
+    "DB_HOST": "inventorymanagement.cgalilzrrrqu.ap-southeast-1.rds.amazonaws.com",
+    "DB_PORT": "5432",
+    "DB_NAME": "nodeflux_polri_authentication",
+    "DB_USER": "bvarta_adm",
+    "DB_PWD": "Bvarta2021!",
+    "EMAIL_USER": "AKIA6NVZGT5R7LNMAHT3",
+    "EMAIL_PASSWORD": "BEvkbk06v6/SlPHwUWuFTrPssPcxdMv5UFMISd/vME2x",
+    "EMAIL_SERVICE": "email-smtp.ap-southeast-1.amazonaws.com",
+    "EMAIL_PORT": "587",
+    "EMAIL_SENDER": "no-reply@e.bvarta.com"
+  }
+}

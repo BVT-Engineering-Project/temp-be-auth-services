@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  nodefluxauth:
+    container_name: nodefluxauth
+    image: nodeflux/auth:${version}
+    build:
+      context: ./
+    ports:
+      - 5001
+    volumes:
+      - ./:/usr/src/app
+    restart: always
+    labels:
+      - traefik.http.routers.nodefluxauth.entrypoints=web
+      - traefik.http.services.nodefluxauth.loadbalancer.server.port=5001
+      - traefik.http.routers.nodefluxauth.rule=PathPrefix(`/auth`)
+      - traefik.http.middlewares.nodefluxauth.stripprefix.prefixes=/auth
+      - traefik.http.routers.nodefluxauth.middlewares=nodefluxauth@docker
+
+      - traefik.http.routers.nodefluxauth-https.entrypoints=websecure
+      - traefik.http.routers.nodefluxauth-https.tls=true
+      - traefik.http.routers.nodefluxauth-https.rule=Host(`api-nodeflux.lokasi.dev`) && PathPrefix(`/auth`)
+      - traefik.http.routers.nodefluxauth-https.middlewares=nodefluxauth@docker
+ 
+networks:
+  default:
+    external:
+      name: li-networks

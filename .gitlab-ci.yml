@@ -1,0 +1,49 @@
+image: docker:alpine
+
+variables:
+  REPOSITORY_URL: 991452110691.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/nodeflux/auth
+  IMAGE_TAG: latest
+  VERSION_LOGIC: '(if [ "$${CI_COMMIT_TAG}" == "" ]; then echo "v$$CI_PIPELINE_IID"; else echo "$${CI_COMMIT_TAG}"; fi);'
+
+
+services:
+- docker:dind
+
+before_script:
+  - aws configure set default.region $AWS_DEFAULT_REGION
+  - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 991452110691.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  - IMAGE_TAG="$(echo $CI_COMMIT_SHA | head -c 8)"
+  - VERSION=$(eval $VERSION_LOGIC)
+  - echo $VERSION
+
+stages:
+  - build_dev
+  - deploy_dev
+
+build_dev:
+  stage: build_dev
+  script:
+    - echo "get environment variabel"
+    - aws ssm get-parameter --with-decryption --name $PARAMATER_DEV_NAME --region $AWS_DEFAULT_REGION | jq -r '.Parameter.Value' > nodemon.json
+    - echo "The current version is set to $VERSION_DEV ."
+    - echo "Building image..."
+    - export version=$VERSION_DEV
+    - docker-compose build --no-cache
+  only:
+    - dev
+  tags:
+    - build-dev
+
+deploy_dev:
+  stage: deploy_dev
+  script:
+    - echo "Deploy to dev server"
+    - docker-compose down
+    - export version=$VERSION_DEV
+    - docker-compose up -d
+  only:
+    - dev
+  tags:
+    - deploy-dev
+
+
